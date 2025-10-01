@@ -6,10 +6,40 @@
 </head>
 <body>
   <center>
+    <div id="loading">
+    <h1>Loading...</h1>
+    </div>
+    <div id="yes" hidden>
     <h1>Yes</h1>
     
     <p>
-    The government of the United States of America is currently funded.
+    The government of the United States of America is currently funded until October 1st at 12:01AM.
   	</p>
+    </div>
+
+    <div id="no">
+    <h1>No</h1>
+    
+    <p>
+    The government of the United States of America shut down on October 1st at 12:01AM!
+  	</p>
+    </div>
   </center>
+  <script>
+    const shutdownTime = Date.parse("2025-10-01T00:01:00-0400");
+    function updateForDate(date) {
+      document.getElementById("loading").hidden = true;
+      if (shutdownTime <= date) {
+	console.log("shutdown");
+	document.getElementById("yes").hidden = true;
+	document.getElementById("no").hidden = false;
+      } else {
+	console.log("not shutdown");
+	document.getElementById("yes").hidden = false;
+	document.getElementById("no").hidden = true;
+      }
+    }
+
+    updateForDate(Date.now());
+  </script>
 </body>
